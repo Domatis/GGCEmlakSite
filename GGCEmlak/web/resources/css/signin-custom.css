@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 May 2021, 02:18:03
+    Author     : gurka
+*/
+#uye_ol{
+    background: white;
+    color:black;
+}
+
+.login{
+    height: 530px;
+}
+
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: rgb(25,135,84);
+    opacity: 1;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+  color: rgb(25,135,84);
+    opacity: 1;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+   color: rgb(25,135,84);
+}
+*::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgb(25,135,84);
+}
+*::placeholder {
+    /* modern browser */
+  color: rgb(25,135,84);
+}
+
+.body1{
+    height: 300px;
+}
+
+.ilan-no-button{
+    width: 100px;
+    border-radius: 5px;
+    background-color: red;
+    color:white;
+    border-width: 1px;
+}
+
+.ilan-no-button:hover{
+    background-color: white;
+    color:red;
+}

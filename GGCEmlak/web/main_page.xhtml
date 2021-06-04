@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>GGC Emlak</title>
+        <h:outputStylesheet library="css" name="myprofile-custom.css"/>    <!-- Bunu eklediğim için orijina tasarımda bozulma oldu -->
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="main-page-custom.css"/>
+        <h:outputStylesheet library="css" name="login-custom.css"/>
+        
+        
+        
+        <!-- Değiştirilen kısım 40.satırdan başlıyor -->
+        <!-- profil seçeneklerinde çıkış linkine basıldığında javadan method çalıştırmalı -->
+        
+        
+    </h:head>
+    <h:body>
+        
+        <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="main_page.xhtml" >GGC Emlak</a>
+            
+            <ul class="navbar-nav ">
+                <li cass="nav-item">
+                    <a class="nav-link active" href="faces/main_page.xhtml" >Ana Sayfa </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link " href="#" >Satılık </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link " href="#" >Kiralık </a>
+                </li>
+                 <li cass="nav-item">
+                     <a class="nav-link " href="faces/myprofile_page.xhtml" >Hakkımızda </a>
+                </li>
+                
+            </ul>
+            <span class="div_uye_girisi ms-auto">
+               
+                
+       <!-- degistirdiğim kısım giriş başarılı ise giriş yapılmış halini değil ise yapılmamış halinin gösterilmesi, user.girisbasarili boolean değer döndürüyor.-->
+                             
+                <h:form rendered ="#{!user.girisbasarili}">
+                <ul class="navbar-nav-custom " id="uye_girisi">
+                <li class="nav-item">
+                    <a class="navbar-nav-item-custom" href="faces/signin_page.xhtml" >Üye Ol </a>
+                </li>
+                 <li class="nav-item">
+                     <a class="navbar-nav-item-custom" href="faces/login_page.xhtml" >Giriş Yap </a>
+                </li>
+            </ul>
+                </h:form>
+                
+                <h:form rendered ="#{user.girisbasarili}">
+                <div class="dropdown">
+                    <h:commandButton class="dropbtn" value="#{user.name}"/>
+  <div class="dropdown-content">
+      <a href="faces/myprofile_page.xhtml">Profilim</a>
+       <a href="#">İlanlarım</a>
+       <a href="#">İlanVer</a>
+          <a href="#">Çıkış</a>
+       
+  </div>
+</div>            </h:form>
+            
+        
+            </span>
+            
+        </nav>
+       
+        <div class="box1">
+            <div class="main_page_label" >
+                <label>GGC</label>
+            </div>
+       
+         
+        </div>
+            
+        
+        
+      
+ 
+      <footer class="bg-dark text-center text-lg-start" style=";bottom:0;background-size: cover">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(33,37,41);color: white;">
+    © 2021 Copyright:
+    <a class="text-light" href="xxx.xhtml">GGC Emlak</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+ 
+        
+    </h:body>
+</html>
+

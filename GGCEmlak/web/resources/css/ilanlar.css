@@ -1,0 +1,171 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 Haz 2021, 17:53:05
+    Author     : gurka
+*/
+
+
+#myclass{
+    color:red;
+    height: 300px;
+    width: 300px;
+}
+
+#satılık-ilan-label{
+    margin-left: 42%;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.mytable-border{
+    border: 1px solid black;
+    margin-right: 3%;
+    margin-left: 3%;
+   
+    min-height: 900px;
+    border-radius:20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
+  
+}
+
+
+
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 150px;
+  
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  
+  background-color: #f9f9f9;
+
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 20px;
+
+
+ 
+
+}
+
+.dropdown-content a {
+  color: black;
+  width: 80px;
+
+  padding-left: 50px;
+  padding-right: 50px;
+  display: table;
+  
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: table;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+#ddwn-custom{
+    margin-right: 50px;
+}
+
+
+#ilan_ver{
+    color:black;
+    background-color: white;
+    text-align: center;
+    margin-left: 1050px;
+    border-radius: 20px;
+    width: 150px;
+    
+}
+
+#ilan_ver:hover{
+ 
+    color:white;
+    background-color: #3e8e41;
+    
+}
+
+.div_uye_girisi a{
+  margin-right: 0px;
+}
+
+
+#data-table-custom{
+    padding: 30px;
+}
+
+.ilan-resmi{
+    max-width: 350px;
+    max-height: 450px;
+}
+
+
+.ilan-no{
+    padding-top: 120px;
+}
+
+.data-table tbody:hover{
+    background-color: #f7d9d9;
+        color:white
+}
+
+.data-table tbody{
+    font-size: 18px;
+   
+}
+
+.btn btn-outline-danger{
+    width: 100px;
+    border-radius: 10px;
+    
+}
+
+.ilan-no-button{
+    width: 100px;
+    border-radius: 5px;
+    background-color: red;
+    color:white;
+    border-width: 1px;
+}
+
+.ilan-no-button:hover{
+    background-color: white;
+    color:red;
+}

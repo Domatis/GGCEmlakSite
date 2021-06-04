@@ -1,0 +1,87 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4 Haz 2021, 15:13:57
+    Author     : gurka
+*/
+
+
+
+.navbar-nav-item-custom{
+  
+ 
+
+    box-sizing: border-box;
+    list-style: none;
+    border-radius: 10px;
+
+    text-decoration: none;
+    background-color:rgb(33,37,41);
+     text-align: center;
+}
+
+.div_uye_girisi a{
+    color:white;
+    text-decoration: none;
+    list-style: none;
+    width: 220px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom:0.5rem;
+    list-style-position: initial;
+    display: grid;
+    font-size: 1rem;
+   margin-top:1.2rem;
+   margin-right: 50px;
+    text-align: center;
+}
+
+.navbar-nav-item-custom:hover{
+    color:black;
+    background-color: white;
+}
+.div_uye_girisi ul{
+    display: flex;
+}
+
+.navbar-nav {
+    padding: 0.4em;
+}
+.navbar-brand{
+   margin-left: 30px;
+}
+
+.main-yazi{
+    padding: 20px;
+    font-size: 16px;
+    
+}
+
+.box{
+   
+    margin-top: 80px;
+    margin-left: 35%;
+    border-radius: 10px;
+    margin-bottom: 150px;
+    border-color: black;
+    width: 600px;
+    height: 600px;
+    border-style: solid;
+}
+
+.bize-ulasin{
+    padding-top: 20px;
+    padding-left: 100px;
+    color:red;
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+
+.button-custom{
+   margin-top: 30px;
+  margin-left: 210px;
+}

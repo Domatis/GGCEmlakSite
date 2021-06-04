@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+     
+    <h:head>
+        <title>GGC Emlak</title>
+        
+        
+     <h:outputStylesheet library="css" name="bootstrap.css"/>
+     <h:outputStylesheet library="css" name="main-page-custom.css"/>
+     <h:outputStylesheet library="css" name="login-custom.css"/>
+     <h:outputStylesheet library="css" name="signin-custom.css"/>
+     
+    
+     
+     <!--97.satırda fail üye olma durumunda uyarı verecek text bilgisi user failmesajdan alınıyor, tasarımına dokunmadan direkt yerleştirdim(Cem) -->
+      
+        
+    </h:head>
+    <h:body style="background-color: grey;">
+  <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="faces/main_page.xhtml" >GGC Emlak</a>
+            
+            <ul class="navbar-nav ">
+                <li cass="nav-item">
+                    <a class="nav-link" href="faces/main_page.xhtml" >Ana Sayfa </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link " href="#" >Satılık </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link " href="#" >Kiralık </a>
+                </li>
+                 <li cass="nav-item">
+                    <a class="nav-link " href="#" >Hakkımızda </a>
+                </li>
+                
+            </ul>
+            <span class="div_uye_girisi ms-auto">
+               
+                
+            <ul class="navbar-nav-custom " id="uye_girisi">
+                <li class="nav-item">
+                    <a class="navbar-nav-item-custom" id="uye_ol" href="faces/signin_page.xhtml" >Üye Ol </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="navbar-nav-item-custom" id="giris_yap" href="faces/login_page.xhtml" >Giriş Yap </a>
+                </li>
+            </ul>
+            
+            
+            </span>
+            
+        </nav> 
+        
+        <div class="body1">
+        <h:form>
+    <div class="container">
+        <div class="login">
+            <div class="row">
+                <h2 style="color: rgb(25,134,84);font-size: 25px;">Üye Ol</h2>
+                <div class="col-md-12">
+                    <label for="email" id="ph">Email</label>
+                    <h:inputText class="form-control" id="email" value="#{user.email}" required="Email adresini giriniz!" pt:placeHolder="Ex.gsoydan@gmail.com " />
+                    
+                    <label for="isim">İsim</label>
+                    <h:inputText class="form-control" id="isim" value="#{user.name}" required="İsim giriniz!" pt:placeHolder="Ex.Cem" />
+               
+             
+                    <label for="soyisim">Soyisim</label>
+                    <h:inputText class="form-control" id="soyisim" value="#{user.surname}" required="Soyisim giriniz!" pt:placeHolder="Ex.Gökhan" />
+               
+             
+                    
+                    <label for="tel">Telefon Numarası</label>
+                    <h:inputText class="form-control" id="telefon" value="#{user.number}" required="Telefon numarınızı giriniz!" pt:placeHolder="Ex.0539618XXXX " />
+               
+             
+                    <label for="il">İl</label>
+                    <h:inputText class="form-control" id="il" value="#{user.city}" required="İl bilgisini giriniz!" pt:placeHolder="Ex.Ankara" />
+                    
+                    <label for="password">Şifre</label>
+                    <h:inputText class="form-control" id="password" pt:placeHolder="******"  value="#{user.pass}" required="Şifrenizi belirleyin!"/>
+                   
+                </div>
+            </div>
+            <div>
+               
+                <div>
+                    <h:commandButton type="submit" id="register" value="Aramıza Katıl" class="btn btn-outline-success btn-form"  action="#{user.KullaniciKayitResponse()}"/>
+                        </div>
+                    </div>
+            <br></br>
+            <p style ="color:red;"> #{user.failuyemesaj} </p>                <!-- Geçici olarak yazıldı daha sonra rengi tipi belirlenebilir.-->
+                </div>
+            </div>
+            
+        </h:form>
+        </div>
+
+     
+ 
+        <footer class="bg-dark text-center text-lg-start" id="footer" >
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(33,37,41);color: white;">
+    © 2021 Copyright:
+    <a class="text-light" href="xxx.xhtml">GGC Emlak</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+        
+        
+        
+        
+        
+    </h:body>
+    
+    
+</html>

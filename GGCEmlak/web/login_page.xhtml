@@ -11,12 +11,7 @@
         
      <h:outputStylesheet library="css" name="bootstrap.css"/>
      <h:outputStylesheet library="css" name="main-page-custom.css"/>
-     <h:outputStylesheet library="css" name="login-custom.css"/>
-
-         
-        
-
-       
+     <h:outputStylesheet library="css" name="login-custom.css"/>   
      <!--89.satırda fail giriş durumunda uyarı verecek text bilgisi user failmesajdan alınıyor, tasarımına dokunmadan direkt yerleştirdim(Cem) -->
      
         
@@ -32,14 +27,14 @@
                     <a class="nav-link" href="faces/main_page.xhtml" >Ana Sayfa </a>
                 </li>
                 <li cass="nav-item">
-                    <a class="nav-link " href="#" >Satılık </a>
+                    <a class="nav-link " href="faces/satilik_ilanlar_page.xhtml" >Satılık </a>
                 </li>
                  <li cass="nav-item">
-                    <a class="nav-link " href="#" >Kiralık </a>
+                    <a class="nav-link " href="faces/kiralik_ilanlar_page.xhtml" >Kiralık </a>
                 </li>
                
                 <li cass="nav-item">
-                    <a class="nav-link " href="#" >Hakkımızda </a>
+                    <a class="nav-link " href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
            
                 </li>
                 
@@ -76,7 +71,7 @@
                
              
                     <label for="password">Şifre</label>
-                    <h:inputText class="form-control" id="password" pt:placeHolder="******"  value="#{user.pass}"/>
+                    <h:inputSecret class="form-control" id="password" pt:placeHolder="******"  value="#{user.pass}"/>
                    
                 </div>
             </div>
@@ -86,7 +81,7 @@
                     <h:commandButton type="submit" id="register" value="Giriş" class="btn btn-outline-success btn-form"  action="#{user.UyeGirisi}"/>
                         </div>
                     </div>
-            <p style ="color:red;"> #{user.failgirismesaj}</p>                <!-- Geçici olarak yazıldı daha sonra rengi tipi belirlenebilir.-->
+            <p style = "color:red;"> #{user.failgirismesaj}</p>                <!-- Geçici olarak yazıldı daha sonra rengi tipi belirlenebilir.-->
                 </div>
             </div>
         </h:form>

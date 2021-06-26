@@ -29,13 +29,13 @@
                     <a class="nav-link" href="faces/main_page.xhtml" >Ana Sayfa </a>
                 </li>
                 <li cass="nav-item">
-                    <a class="nav-link " href="#" >Satılık </a>
+                    <a class="nav-link " href="faces/satilik_ilanlar_page.xhtml" >Satılık </a>
                 </li>
                 <li cass="nav-item">
-                    <a class="nav-link " href="#" >Kiralık </a>
+                    <a class="nav-link " href="faces/kiralik_ilanlar_page.xhtml" >Kiralık </a>
                 </li>
                  <li cass="nav-item">
-                    <a class="nav-link " href="#" >Hakkımızda </a>
+                    <a class="nav-link " href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
                 </li>
                 
             </ul>
@@ -83,7 +83,7 @@
                     <h:inputText class="form-control" id="il" value="#{user.city}" required="İl bilgisini giriniz!" pt:placeHolder="Ex.Ankara" />
                     
                     <label for="password">Şifre</label>
-                    <h:inputText class="form-control" id="password" pt:placeHolder="******"  value="#{user.pass}" required="Şifrenizi belirleyin!"/>
+                    <h:inputSecret class="form-control" id="password" pt:placeHolder="******"  value="#{user.pass}" required="Şifrenizi belirleyin!"/>
                    
                 </div>
             </div>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
             <br></br>
-            <p style ="color:red;"> #{user.failuyemesaj} </p>                <!-- Geçici olarak yazıldı daha sonra rengi tipi belirlenebilir.-->
+            <p style = "color:red;"> #{user.failuyemesaj}</p>               
                 </div>
             </div>
             
@@ -107,7 +107,7 @@
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgb(33,37,41);color: white;">
     © 2021 Copyright:
-    <a class="text-light" href="xxx.xhtml">GGC Emlak</a>
+    <a class="text-light" href="faces/main_page.xhtml">GGC Emlak</a>
   </div>
   <!-- Copyright -->
 </footer>

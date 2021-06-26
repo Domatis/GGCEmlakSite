@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title>GGC Emlak</title>
+
+
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        
+        <h:outputStylesheet library="css" name="main-page-custom.css"/>
+        <h:outputStylesheet library="css" name="ilanlar.css"/>
+        <h:outputStylesheet library="css" name="myprofile-custom.css"/>
+
+
+
+
+
+
+
+        <!--89.satırda fail giriş durumunda uyarı verecek text bilgisi user failmesajdan alınıyor, tasarımına dokunmadan direkt yerleştirdim(Cem) -->
+
+
+
+    </h:head>
+
+    <h:body >
+        <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="faces/main_page.xhtml" >GGC Emlak</a>
+
+
+            <ul class="navbar-nav ">
+                <li cass="nav-item">
+                    <a class="nav-link" href="faces/main_page.xhtml" >Ana Sayfa </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link  " href="faces/satilik_ilanlar_page.xhtml" >Satılık </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link active " href="faces/kiralik_ilanlar_page.xhtml" >Kiralık </a>
+                </li>
+
+                <li cass="nav-item">
+                    <a class="nav-link " href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
+
+                </li>         
+            </ul>
+
+
+
+           <span class="div_uye_girisi ms-auto">
+               
+                
+       <!-- degistirdiğim kısım giriş başarılı ise giriş yapılmış halini değil ise yapılmamış halinin gösterilmesi, user.girisbasarili boolean değer döndürüyor.-->
+                             
+                <h:form rendered ="#{!user.girisbasarili}">
+                <ul class="navbar-nav-custom " id="uye_girisi">
+                <li class="nav-item">
+                    <a class="navbar-nav-item-custom" href="faces/signin_page.xhtml" >Üye Ol </a>
+                </li>
+                 <li class="nav-item">
+                     <a class="navbar-nav-item-custom" href="faces/login_page.xhtml" >Giriş Yap </a>
+                </li>
+            </ul>
+                </h:form>
+                
+        
+                <h:form rendered ="#{user.girisbasarili}">
+                <div class="dropdown">
+                    <h:commandButton class="dropbtn" value="#{user.name}"/>
+  <div class="dropdown-content">
+      <h:commandLink value = "Profilim" action = "faces/myprofile_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanlarım" action = "faces/ilanlarim_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanVer" action = "faces/ilan_ekle_page.xhtml"></h:commandLink>
+       <h:commandLink value = "Çıkış" action = "#{user.logOut()}"></h:commandLink>       
+       
+  </div>
+</div>            </h:form>
+            
+            
+ 
+           
+            </span>
+
+
+        </nav>        
+
+        <h2 id="satılık-ilan-label">Kiralık İlanlar</h2>
+
+        <div class="mytable-border">
+
+            <div class="data-table" id="data-table-custom">
+
+                <h:dataTable  class="table table-striped" value="#{ilanmanager.kiralikilanlar}" var="ilan">  <!--//value ==List<kiralık ilanlar nesne listesi>--> 
+                    <h:column >  
+                        <f:facet name="header">İlan No</f:facet>  
+
+                        <div class="ilan-no">
+                            <h:outputText value="#{ilan.ilanNo}"/>
+                            
+                        </div>
+
+                    </h:column>  
+                    <h:column class="ilan-resmi-label">  
+                        <f:facet  name="header" >İlan Resmi</f:facet>  
+
+                        <div>
+                            <h:graphicImage  class="ilan-resmi" url="#{ilan.imageLink}"/>
+
+                        </div>
+
+                    </h:column>  
+                    <h:column >  
+                        <f:facet name="header">İlan Sahibi</f:facet>  
+                        <div class="ilan-no">
+                            <h:outputText value="#{ilan.fullname}"/>
+                            
+                        </div>
+                        
+                        
+                    </h:column>  
+                     <h:column >  
+                        <f:facet name="header">İletişim No</f:facet>  
+                        <div class="ilan-no">
+                          
+                            <h:outputText value="#{ilan.iletisimNo}"/>
+                        </div>
+                        
+                        
+                    </h:column>  
+                    
+                     <h:column >  
+                        <f:facet name="header">İl</f:facet>  
+                        <div class="ilan-no">
+                          
+                            <h:outputText value="#{ilan.sehir}"/>
+                        </div>
+                        
+                        
+                    </h:column>  
+                      <h:column >  
+                        <f:facet name="header">İlçe</f:facet>  
+                        <div class="ilan-no">
+                          
+                            <h:outputText value="#{ilan.ilce}"/>
+                        </div>
+                        
+                        
+                    </h:column>  
+                    <h:column>  
+                        <f:facet name="header">M2</f:facet>  
+                         <div class="ilan-no">
+                          
+                            <h:outputText value="#{ilan.m2}"/>
+                        </div>
+                    </h:column>
+                    <h:column>  
+                        <f:facet name="header">Fiyat</f:facet>  
+                         <div class="ilan-no">
+                          
+                             <h:outputText value="#{ilan.fiyat}"/>
+                        </div>
+                    </h:column>  
+                </h:dataTable>  
+
+            </div>
+
+
+        </div>
+
+
+
+      <footer class="bg-dark text-center text-lg-start" style=";bottom:0;background-size: cover">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(33,37,41);color: white;">
+    © 2021 Copyright:
+    <a class="text-light" href="xxx.xhtml">GGC Emlak</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+ 
+        
+      
+    </h:body>
+
+
+</html>
+

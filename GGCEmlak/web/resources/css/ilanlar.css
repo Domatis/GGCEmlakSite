@@ -141,10 +141,7 @@ and open the template in the editor.
     padding-top: 120px;
 }
 
-.data-table tbody:hover{
-    background-color: #f7d9d9;
-        color:white
-}
+
 
 .data-table tbody{
     font-size: 18px;

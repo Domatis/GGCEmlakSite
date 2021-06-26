@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title>GGC Emlak</title>
+
+
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="main-page-custom.css"/>
+        <h:outputStylesheet library="css" name="ilanlar.css"/>
+        <h:outputStylesheet library="css" name="login-custom.css"/>
+        <h:outputStylesheet library="css" name="signin-custom.css"/>
+        <h:outputStylesheet library="css" name="ilan-ekle-custom.css"/>
+     
+
+
+
+
+
+
+
+        <!--89.satırda fail giriş durumunda uyarı verecek text bilgisi user failmesajdan alınıyor, tasarımına dokunmadan direkt yerleştirdim(Cem) -->
+
+        
+        <!-- dataTable value su List<ilan>  gibi bir list döndürmeli tutorialspoint datatable örneğinde benzer kod var-->
+
+
+    </h:head>
+
+    <h:body >
+        <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="faces/main_page.xhtml" >GGC Emlak</a>
+
+
+            <ul class="navbar-nav ">
+                <li cass="nav-item">
+                    <a class="nav-link" href="faces/main_page.xhtml" >Ana Sayfa </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link  " href="faces/satilik_ilanlar_page.xhtml" >Satılık </a>
+                </li>
+                <li cass="nav-item">
+                    <a class="nav-link  " href="faces/kiralik_ilanlar_page.xhtml" >Kiralık </a>
+                </li>
+
+                <li cass="nav-item">
+                    <a class="nav-link " href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
+
+                </li>         
+            </ul>
+
+
+
+            <span class="div_uye_girisi ms-auto" id="ddwn-custom">
+
+
+                <h:form>
+                    <div class="dropdown">
+                        <h:commandButton class="dropbtn" value="#{user.name}"/>
+                        <div class="dropdown-content">
+                            <h:commandLink value = "Profilim" action = "faces/myprofile_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanlarım" action = "faces/ilanlarim_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanVer" action = "faces/ilan_ekle_page.xhtml"></h:commandLink>
+       <h:commandLink value = "Çıkış" action = "#{user.logOut()}"></h:commandLink>
+
+                        </div>
+                    </div>            </h:form>
+
+
+
+            </span>
+
+
+        </nav>        
+
+        
+        
+        
+         <div class="body1">
+        <h:form>
+    <div class="container">
+        <div class="login">
+            <div class="row">
+                <h2 style="color: rgb(25,134,84);font-size: 25px;">İlan Ekle</h2>
+                <div class="col-md-12">
+                    <label for="email" id="ph">İl</label>
+                    <h:inputText class="form-control" id="il" value="#{user.ilanil}" required="İl bilgisini giriniz!" pt:placeHolder="İstanbul " />
+                    
+                    <label for="isim">İlçe</label>
+                    <h:inputText class="form-control" id="ilce" value="#{user.ilanilce}" required="İlçe bilgisini giriniz!" pt:placeHolder="Kadıköy" />
+               
+                    <label for="soyisim">Fotağraf Linki</label>
+                    <h:inputText class="form-control" id="link" value="#{user.ilanimage}" required="Fotoğraf linkini giriniz!" pt:placeHolder="fotograf_link.com" />
+               
+             
+             
+                    <label for="soyisim">M2</label>
+                    <h:inputText class="form-control" id="m2" value="#{user.ilanm2}" required="M2 bilgisini giriniz!" pt:placeHolder="125 " />
+               
+             
+                    
+                    <label for="tel">Fiyat</label>
+                    <h:inputText class="form-control" id="fikat" value="#{user.ilanfiyat}" required="Fiyat bilgisini giriniz!" pt:placeHolder="120000 " />
+                    
+                    <h:selectOneRadio class="radio-button" value = "#{user.ilantip}">
+            <f:selectItem  itemValue = "kiralik" itemLabel = "Kiralık" />
+            <f:selectItem  itemValue = "satilik" itemLabel = "Satılık" />
+               
+                    </h:selectOneRadio>
+                   
+                </div>
+            </div>
+            <div>
+               
+                <div>
+                    <h:commandButton type="submit" id="register" value="İlan ver" class="btn btn-outline-success btn-form"  action="#{user.IlanEkle()}"/>
+                        </div>
+                    </div>
+            <p style = "color:red;"> #{user.faililanmesaj}</p>  
+            
+                </div>
+            </div>
+            
+        </h:form>
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+      <footer class="bg-dark text-center text-lg-start" style=";bottom:0;background-size: cover">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgb(33,37,41);color: white;">
+    © 2021 Copyright:
+    <a class="text-light" href="xxx.xhtml">GGC Emlak</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+ 
+        
+      
+    </h:body>
+
+
+</html>
+

@@ -4,30 +4,23 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>GGC Emlak</title>
-        
-     <h:outputStylesheet library="css" name="bootstrap.css"/>
-     
-     <h:outputStylesheet library="css" name="main-page-custom.css"/>   
-     <h:outputStylesheet library="css" name="login-custom.css"/>
-     <h:outputStylesheet library="css" name="myprofile-custom.css"/>
-     
-    
-       <!-- Bunu eklediğim için orijina tasarımda bozulma oldu -->
-        
-        
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="login-custom.css"/>    
+              <h:outputStylesheet library="css" name="hakkimizda.css"/> 
+              <h:outputStylesheet library="css" name="myprofile-custom.css"/>
         <!-- Değiştirilen kısım 40.satırdan başlıyor -->
         <!-- profil seçeneklerinde çıkış linkine basıldığında javadan method çalıştırmalı -->
         
         
     </h:head>
-    <h:body>
+    <h:body style="background-color: white;">
         
         <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="main_page.xhtml" >GGC Emlak</a>
+            <a class="navbar-brand" href="faces/main_page.xhtml" >GGC Emlak</a>
             
             <ul class="navbar-nav ">
                 <li cass="nav-item">
-                    <a class="nav-link active" href="faces/main_page.xhtml" >Ana Sayfa </a>
+                    <a class="nav-link " href="faces/main_page.xhtml" >Ana Sayfa </a>
                 </li>
                 <li cass="nav-item">
                     <a class="nav-link " href="faces/satilik_ilanlar_page.xhtml" >Satılık </a>
@@ -36,7 +29,7 @@
                     <a class="nav-link " href="faces/kiralik_ilanlar_page.xhtml" >Kiralık </a>
                 </li>
                  <li cass="nav-item">
-                     <a class="nav-link " href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
+                     <a class="nav-link active" href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
                 </li>
                 
             </ul>
@@ -56,15 +49,14 @@
             </ul>
                 </h:form>
                 
-        
                 <h:form rendered ="#{user.girisbasarili}">
                 <div class="dropdown">
                     <h:commandButton class="dropbtn" value="#{user.name}"/>
   <div class="dropdown-content">
-      <h:commandLink class =" dbcustom" value = "Profilim" action = "faces/myprofile_page.xhtml"></h:commandLink>
-       <h:commandLink class =" dbcustom" value = "İlanlarım" action = "faces/ilanlarim_page.xhtml"></h:commandLink>
-       <h:commandLink class =" dbcustom" value = "İlanVer" action = "faces/ilan_ekle_page.xhtml"></h:commandLink>
-       <h:commandLink class =" dbcustom" value = "Çıkış" action = "#{user.logOut()}"></h:commandLink>       
+      <h:commandLink value = "Profilim" action = "faces/myprofile_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanlarım" action = "faces/ilanlarim_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanVer" action = "faces/ilan_ekle_page.xhtml"></h:commandLink>
+       <h:commandLink value = "Çıkış" action = "#{user.logOut()}"></h:commandLink>
        
   </div>
 </div>            </h:form>
@@ -76,9 +68,28 @@
             
         </nav>
        
-        <div class="box1">
-            <div class="main_page_label" >
-                <label>GGC</label>
+        <div class="box">
+            <div class="main-yazi" >
+                <label>GGC Emlak olarak gayrimenkul sektöründe elde ettiğimiz tecrübemizle, kaliteye olan bağlılığımızla, müşterilerimizin ihtiyaçları karşısında gösterdiğimiz insan odaklı problem çözme becerimizle gayrimenkul varlıklarına odaklanıyoruz.
+
+Hem ulusal, hem de uluslararası alanda dünyanın her köşesinde, her türlü gayrimenkul yatırımının satışı, satın alınması ve kiralanması süreçlerinde size özel stratejiler geliştiriyor ve detaylı pazar bilgimiz sayesinde çağdaş, yenilikçi pazarlama metotları kullanarak müşterilerimizin gayrimenkul yatırımlarına yön veriyor, menfaatlerini korumaya yönelik tavsiyelerde bulunuyoruz.
+
+Gayrimenkul sektörünün kurumsal ve markalaşma düzeyinde etik kurallara uyarak daha da büyüyeceğine inanıyoruz.
+
+</label>
+                
+                
+                <div class="bize-yazin">
+                    <h:form>
+                        <h:outputLabel class="bize-ulasin" value="Size Nasıl Daha İyi Hizmet Verebiliriz?" />
+                        <h:inputTextarea class ="form-control" id="exampleFormControlTextarea1"   value="#{user.istekmesaj}" rows="6"/>
+                        <p style ="color:green;">#{user.onerionaymesaj}</p>
+                        <div class="button-custom"> 
+                            <h:commandButton class="btn btn-outline-secondary"  value="Gönder" action="#{user.OneriGonder}" />
+                        </div>
+                        
+                    </h:form>
+                </div>
             </div>
        
          

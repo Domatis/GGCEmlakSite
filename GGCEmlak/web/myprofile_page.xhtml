@@ -17,7 +17,7 @@
     </h:head>
     
     <h:body style="background-color: grey;">
-  <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="faces/main_page.xhtml" >GGC Emlak</a>
       
             
@@ -26,17 +26,19 @@
                     <a class="nav-link" href="faces/main_page.xhtml" >Ana Sayfa </a>
                 </li>
                 <li cass="nav-item">
-                    <a class="nav-link " href="#" >Satılık </a>
+                    <a class="nav-link " href="faces/satilik_ilanlar_page.xhtml" >Satılık </a>
                 </li>
                  <li cass="nav-item">
-                    <a class="nav-link " href="#" >Kiralık </a>
+                    <a class="nav-link " href="faces/kiralik_ilanlar_page.xhtml" >Kiralık </a>
                 </li>
                
                 <li cass="nav-item">
-                    <a class="nav-link " href="#" >Hakkımızda </a>
+                    <a class="nav-link " href="faces/hakkimizda_page.xhtml" >Hakkımızda </a>
            
                 </li>         
             </ul>
+      
+      
       
             <span class="div_uye_girisi ms-auto" id="ddwn-custom">
                 
@@ -45,10 +47,10 @@
                 <div class="dropdown">
                     <h:commandButton class="dropbtn" value="#{user.name}"/>
   <div class="dropdown-content">
-      <a href="faces/myprofile_page.xhtml">Profilim</a>
-       <a href="#">İlanlarım</a>
-       <a href="#">İlanVer</a>
-          <a href="#">Çıkış</a>
+       <h:commandLink value = "Profilim" action = "faces/myprofile_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanlarım" action = "faces/ilanlarim_page.xhtml"></h:commandLink>
+       <h:commandLink value = "İlanVer" action = "faces/ilan_ekle_page.xhtml"></h:commandLink>
+       <h:commandLink value = "Çıkış" action = "#{user.logOut()}"></h:commandLink>
        
   </div>
 </div>            </h:form>
@@ -92,12 +94,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-work">
-                            <h:outputLabel value="Aktif İlan Sayısı" class="aktif-ilan"/>
-                            
-                            <label style="color:red;">#.{user.ilan_sayısı}</label>
-                                 
-                        </div>
+                        
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">

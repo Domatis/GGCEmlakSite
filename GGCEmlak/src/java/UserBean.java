@@ -5,8 +5,11 @@
  */
 
 import javax.inject.Named;
+import javax.inject.Inject;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -17,10 +20,117 @@ import java.io.Serializable;
 public class UserBean implements Serializable {
 
     private String name,surname,city,email,number,pass;
-    private String adress = " ";
     private String failuyemesaj;
+    private String faililanmesaj;
+    private String onerionaymesaj;
+    private String istekmesaj;
     private boolean girisbasarili = false;
     private String failgirismesaj;
+    private ArrayList<Ilan> ilanlarım = new ArrayList<Ilan>();
+    @Inject
+    private IlanManager ilanmanager;    
+    @Inject
+    private DatabaseManager dbmanager;
+    
+    private String ilanil,ilanilce,ilanimage,ilanm2,ilanfiyat,ilantip;
+
+    
+    public String getOnerionaymesaj()
+    {
+        String temp = onerionaymesaj;
+        onerionaymesaj = "";
+        return temp;
+    }
+    
+    
+    public String getIstekmesaj()
+    {
+        return istekmesaj;
+    }
+    
+    public void setIstekmesaj(String val)
+    {
+        istekmesaj = val;
+    }
+    
+    public String getFaililanmesaj()
+    {
+        String temp = faililanmesaj;  
+        faililanmesaj = "";
+        return temp;
+    }
+    
+    public void setFaililanmesaj(String val)
+    {
+        
+        faililanmesaj = val;
+    }
+    
+    public String getIlanil()
+    {
+        return ilanil;
+    }
+    
+    public void setIlanil(String val)
+    {
+        ilanil = val;
+    }
+    
+    public String getIlanilce()
+    {
+        return ilanilce;
+    }
+    
+    public void setIlanilce(String val)
+    {
+        ilanilce = val;
+    }
+    
+    public String getIlanimage()
+    {
+        return ilanimage;
+    }
+    
+    public void setIlanimage(String val)
+    {
+        ilanimage = val;
+    }
+    
+    public String getIlanm2()
+    {
+        return ilanm2;
+    }
+    
+    public void setIlanm2(String val)
+    {
+        ilanm2 = val;
+    }
+    
+    public String getIlanfiyat()
+    {
+        return ilanfiyat;
+    }
+    
+    public void setIlanfiyat(String val)
+    {
+        ilanfiyat =val;
+    }
+    
+    public String getIlantip()
+    {
+        return ilantip;
+    }
+    
+    public void setIlantip(String val)
+    {
+        ilantip = val;
+    }
+    
+    public ArrayList<Ilan> getIlanlarım()
+    {
+        return ilanlarım;
+    }
+    
     
     public boolean getGirisbasarili()
     {
@@ -72,15 +182,6 @@ public class UserBean implements Serializable {
         this.email = e;
     }
     
-    public String getAdress()
-    {
-        return this.adress;
-    }
-    
-    public void setAdress(String a)
-    {
-        this.adress = a;
-    }
     
     public String getNumber()
     {
@@ -126,36 +227,105 @@ public class UserBean implements Serializable {
         this.failgirismesaj = s;
     }
     
+    public String OneriGonder()
+    {
+        //Databasee öneri mesajını gönder.
+        dbmanager.mesajEkle(istekmesaj); 
+        //Öneri onay mesajı oluştur.
+        onerionaymesaj = "Mesajınız başarıyla iletilmiştir";     
+        istekmesaj = "";
+        return "hakkimizda_page";
+    }
+    
+    public void IlanSil(ActionEvent event)
+    {
+        //İlan numarasının alınması.
+        String ilanno = (String)event.getComponent().getAttributes().get("ilanno");
+        String ilantip = (String)event.getComponent().getAttributes().get("ilantipname");
+        
+        //Kiralık için.
+        if(ilantip.equals("Kiralık"))
+        {
+            //Databaseden sil.
+            dbmanager.kiralikDelete(ilanno);
+            
+        }
+        
+        else //Satılık için.
+        {
+            //Databaseden sil.
+            dbmanager.satilikDelete(ilanno);
+            
+        }
+   
+        
+        //Anlık ilanlarımı güncelle.
+        ilanlarım.clear();
+        dbmanager.UserIlanlarıAl(email, ilanlarım);
+        
+        //Ilanmanager listelerini güncelle.
+        ilanmanager.UpdateIlanlar();
+        
+    }
     
     public String UyeGirisi()
     {
         
         //Girilen email ile şifreyi kontrol et eğer doğruysa profil sayfasına yönlendir.
-        if(this.email.equals("ggc@email") && this.pass.equals("1234"))
+        
+        boolean kullanicigirisbasarili = dbmanager.KullaniciGirisKontrol(email, pass);
+        
+        
+        if(kullanicigirisbasarili)  
         {
             //Giriş başarılı.
-            //TODO databaseden bu kullanıcıya ait bilgiler alınıp gerekli değişkenlere atanacak.
-            //GEçici olarak elle atanacak.
-            this.name = "GGC";
-            this.surname = "GGC2";
-            this.city = "İstanbul";
-            this.number = "12345";
+                 
+            UserInfo currentuserinfo = dbmanager.KullanıcıInfoAl(email);
             
-            girisbasarili = true;         
+            if(currentuserinfo == null) //Hata sonucu null döndüğü durum.
+            {
+                girisbasarili = false;
+                    failgirismesaj = "Database Hatası Oluştu";
+                    UserParametreleriSifirla();
+                    return "login_page";
+            }
+            
+            this.name = currentuserinfo.name;
+            this.surname = currentuserinfo.surname;
+            this.city = currentuserinfo.city;
+            this.number = currentuserinfo.number;
+            girisbasarili = true;        
+            
+            
+             //Databasende kullanıcıya göre ilanlar alınacak ve ilanlarım listesi güncellenecek.
+            dbmanager.UserIlanlarıAl(email, ilanlarım);
+            
+      
             return "myprofile_page";       
         }   
         
         
         //Eğer giriş başarılı değilse yine aynı sayfaya yönlendir.
         //Uyarı mesajını güncelle.
+        girisbasarili = false;
         failgirismesaj = "Girdiğiniz e-mail veya şifre geçersizdir.";
-        ParametreleriSifirla();
+        UserParametreleriSifirla();
         return "login_page";
         
         
     }
     
-    public void ParametreleriSifirla()
+    public void IlanBilgiSıfırla()
+    {
+        ilanilce = "";
+        ilanimage = "";
+        ilanil = "";
+        ilanm2 = "";
+        ilanfiyat = "";
+        ilantip = "";
+    }
+    
+    public void UserParametreleriSifirla()
     {
         this.name = "";
         this.surname = "";
@@ -163,32 +333,123 @@ public class UserBean implements Serializable {
         this.pass = "";
         this.city = "";
         this.number = "";
-        this.adress = "";
+        ilanlarım.clear();
     }
     
     
+    public String logOut()
+    {
+
+        //Kullanıcı logout olduğundan bütün parametreler sıfırlanacak.
+        UserParametreleriSifirla();
+        girisbasarili = false;
+        return"main_page";
+    }
+    
+    
+    public String IlanEkle()
+    {
+        
+        //Verilen parametrelerden yeni ilan oluştur hem şuanki listeye ekle hem databasee gönder.
+        
+        if(ilantip == null)
+        {
+            faililanmesaj = "Lütfen ilan tipi seçiniz";
+            return "ilan_ekle_page";
+        }    //Boş bırakıldığında veri null olarak kabul ediliyor.
+        
+        if(ilantip.equals("kiralik"))
+        {
+            
+            StringBuilder returnmessage = new StringBuilder();
+            //Oluşturulan ilanın database'e eklenmesi.
+            boolean ilaneklendi = dbmanager.kiralikEkle(ilanil, ilanilce, ilanm2, ilanfiyat, name, surname, number, email, ilanimage,returnmessage);
+            
+            
+            
+            if(ilaneklendi)
+            {
+                 //Kullanıcı için oluşturulan ilanın şuanki ilanlarım listesine eklenmesi.
+            String tempilanno = String.valueOf(dbmanager.getLastIlanId()+1);
+            Ilan newilan = new Ilan(tempilanno,number,ilanm2,ilanfiyat,name,surname,ilanil,ilanilce,Ilan.IlanTipi.Kiralik,ilanimage);
+            
+            ilanlarım.add(newilan);
+            ilanmanager.UpdateKiralikIlanlar(newilan);
+            
+            faililanmesaj = "";
+            
+            IlanBilgiSıfırla();
+            return "ilanlarim_page";
+            }
+            
+            //Database ilan eklerken error vermesi durumu.
+            else
+            {
+                IlanBilgiSıfırla();
+                faililanmesaj = returnmessage.toString();
+                return "ilan_ekle_page";
+            }
+            
+           
+        }
+            
+        else if (ilantip.equals("satilik"))
+        {
+            //Oluşturulan ilanın database'e eklenmesi.
+            StringBuilder returnmessage = new StringBuilder();
+            boolean ilaneklendi = dbmanager.satilikEkle(ilanil, ilanilce, ilanm2, ilanfiyat, name, surname, number, email, ilanimage,returnmessage);
+            
+            if(ilaneklendi)
+            {
+                //Kullanıcı için oluşturulan ilanın şuanki ilanlarım listesine eklenmesi.
+            String tempilanno = String.valueOf(dbmanager.getLastIlanId()+1);
+            Ilan newilan = new Ilan(tempilanno,number,ilanm2,ilanfiyat,name,surname,ilanil,ilanilce,Ilan.IlanTipi.Satilik,ilanimage);
+            
+            ilanlarım.add(newilan);
+            ilanmanager.UpdateSatilikİlanlar(newilan);
+            
+            faililanmesaj = "";
+            IlanBilgiSıfırla();
+             return "ilanlarim_page";
+                
+            }
+            
+            else 
+            {
+                IlanBilgiSıfırla();
+                faililanmesaj = returnmessage.toString();
+                return "ilan_ekle_page";
+            }
+            
+            
+        }
+        
+        else    return "ilan_ekle_page";
+                   
+    }
     
     public String KullaniciKayitResponse()
     {
-        //TODO kayit olunurken databeseden var olan bilgiler kontrol edilecek aynı email kayıtlı var ise ona göre sonuç döndürülecek.
+        //kayit olunurken databeseden var olan bilgiler kontrol edilecek aynı email kayıtlı var ise ona göre sonuç döndürülecek.
+        StringBuilder message = new StringBuilder();
         
-        //Şimdilik bütün kayıtlar geçerli.     
-        //Direkt profil sayfasına yönlendiriliyor.
+        boolean emailkayitli = dbmanager.emailKontrol(this.email,message);
         
-        //girilen verileri kendi elle girdiğin geçici verilere göre kontrol ederek 2 farklı sonuç döndür.
-        
-        if(this.name.equals("GGC"))
+        if(emailkayitli)    //Girilen email databasede mevcut üyelik başarısız.
         {
-            failuyemesaj = "Üyelik Başarılı";
-            return "myprofile_page";   
+            UserParametreleriSifirla();
+            failuyemesaj = message.toString();
+            return "signin_page";    
         }
-       
-        ParametreleriSifirla();
-       failuyemesaj = "Üyelik gerçekleştirilemedi";
-       return "signin_page";
         
-        
-       //Üyelik başarısız durumu.
+        else        //Yeni üyelik başarılı 
+        {
+            //Yeni üye bilgisinin database'e kaydedilmesi.
+            dbmanager.ElemanEkle(email, name, surname, number, city, pass);
+            failuyemesaj ="";
+            girisbasarili = true;
+            return "signin_ok_page";          
+        }
        
         
     }
